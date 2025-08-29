@@ -1,6 +1,9 @@
+"use server";
+
 import { Post } from "@/types/domain";
 
-export function getPosts(): Post[] {
+export async function getPosts(): Promise<Post[]> {
+  console.log("getPosts called");
   return [
     {
       id: 1,
@@ -26,8 +29,8 @@ export function getPosts(): Post[] {
   ];
 }
 
-export function getPostBySlug(slug: string): Post | null {
-  const posts = getPosts();
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  const posts = await getPosts();
 
   return posts.find((post) => post.slug === slug) || null;
 }
